@@ -14,7 +14,9 @@
             const authSuccessUrl = 'bsv1967androidapp://www.avito.ru/callback';
             
             // Добавляем старый URI как параметр
-            const redirectUrl = `${authSuccessUrl}?redirect_uri=${encodeURIComponent(oldUri)}`;
+            //const redirectUrl = `${authSuccessUrl}?redirect_uri=${encodeURIComponent(oldUri)}`;
+            const redirectUrl = `${authSuccessUrl}?redirect_uri=${oldUri}`;
+
             
             // Перенаправляем пользователя
             window.location.href = redirectUrl;
