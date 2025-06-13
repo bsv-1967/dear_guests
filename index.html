@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>replit</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    Hello world
-    <script src="script.js"></script>
-  </body>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перенаправление после авторизации</title>
+    <script>
+        // Функция, которая выполняется после загрузки страницы
+        window.onload = function() {
+            // Получаем текущий URI (без домена)
+            const oldUri = window.location.pathname + window.location.search;
+            
+            // URL для перенаправления после авторизации
+            const authSuccessUrl = 'bsv1967androidapp://www.avito.ru/callback';
+            
+            // Добавляем старый URI как параметр
+            const redirectUrl = `${authSuccessUrl}?redirect_uri=${encodeURIComponent(oldUri)}`;
+            
+            // Перенаправляем пользователя
+            window.location.href = redirectUrl;
+        };
+    </script>
+</head>
+<body>
+    <p>Идет перенаправление после авторизации...</p>
+</body>
 </html>
