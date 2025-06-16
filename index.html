@@ -5,22 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Перенаправление после авторизации</title>
     <script>
-        // Функция, которая выполняется после загрузки страницы
-        window.onload = function() {
-            // Получаем текущий URI (без домена)
-            const oldUri = window.location.pathname + window.location.search;
-            
-            // URL для перенаправления после авторизации
-            const authSuccessUrl = 'bsv1967androidapp://www.avito.ru/callback';
-            
-            // Добавляем старый URI как параметр
-            //const redirectUrl = `${authSuccessUrl}?redirect_uri=${encodeURIComponent(oldUri)}`;
-            const redirectUrl = `${authSuccessUrl}?redirect_uri=${oldUri}`;
+          // Время задержки перед редиректом в миллисекундах (3 секунды)
+            const redirectDelay = 3000;
+            // Время задержки перед закрытием страницы после редиректа (2 секунды)
+            const closeDelay = 2000;
 
-            
-            // Перенаправляем пользователя
-            window.location.href = redirectUrl;
-        };
+            window.onload = function() {
+                setTimeout(function() {
+                    // Получаем текущий URI (без домена)
+                    const oldUri = window.location.pathname + window.location.search;
+
+                    // URL для перенаправления после авторизации
+                    const authSuccessUrl = 'bsv1967androidapp://www.avito.ru/callback';
+
+                    // Добавляем старый URI как параметр
+                    //const redirectUrl = `${authSuccessUrl}?redirect_uri=${encodeURIComponent(oldUri)}`;
+                    const redirectUrl = `${authSuccessUrl}?redirect_uri=${oldUri}`;
+
+
+                    // Перенаправляем пользователя
+                    window.location.href = redirectUrl;
+
+                    // После редиректа ждем и закрываем страницу
+                    setTimeout(function() {
+                        window.close();
+                    }, closeDelay);
+
+                }, redirectDelay);
+            };
     </script>
 </head>
 <body>
